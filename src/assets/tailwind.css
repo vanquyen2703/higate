@@ -3,3 +3,79 @@
 @tailwind components;
 
 @tailwind utilities;
+
+html,
+body {
+  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a, p, li, font {
+  font-family: "Open Sans" !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+@layer base {
+  h3 {
+    @apply text-[36px]  leading-[43.2px]  mb-16 font-OpenSans;
+  } 
+  h4{
+    @apply text-[16px] leading-[18px] 768:text-[28px] 768:leading-[33.6px] mb-[35.65px]
+  }
+  h5 {
+    @apply text-[16px] leading-[18px] 768:text-[20px] 768:leading-[24px]  mb-2 font-OpenSans;
+  } 
+  /* ... */
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/public/fonts/OpenSans/OpenSans-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("/public/fonts/OpenSans/OpenSans-SemiBold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("/public/fonts/OpenSans/OpenSans-Regular.ttf");
+  font-weight: 400;
+}
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: white;
+  }
+}
+.Toastify__toast-body{
+  font-family: 'Open Sans';
+}
+.Toastify__toast-body > div:last-child {
+  font-family: 'Open Sans';
+}
+.box-icon:active >.gricon{
+  fill: #0F23D0;
+}
+.boxicon:active >.aiicon{
+  fill: #0F23D0;
+}
+.label{
+  color:#0F23D0
+}
+.footer-link:not(:last-child){
+  margin-bottom: 13px;
+}
