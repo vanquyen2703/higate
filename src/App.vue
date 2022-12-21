@@ -1,3 +1,4 @@
+
 <template>
   <HeaderDefault />
   <main id="Homepage-one">
@@ -498,8 +499,7 @@
               max-width: 100%;
               min-height: 100%;
               max-height: 100%;
-            "
-           /><noscript
+            " /><noscript
             ><img
               srcSet="/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fzml4qel2k312%2FK6tBqUmZvqjQfavTOEbSZ%2Fa26debb2e6140bd751eefe41d4d33acc%2FGroup12.png&amp;w=640&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fzml4qel2k312%2FK6tBqUmZvqjQfavTOEbSZ%2Fa26debb2e6140bd751eefe41d4d33acc%2FGroup12.png&amp;w=1200&amp;q=75 2x"
               src="/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fzml4qel2k312%2FK6tBqUmZvqjQfavTOEbSZ%2Fa26debb2e6140bd751eefe41d4d33acc%2FGroup12.png&amp;w=1200&amp;q=75"
@@ -599,7 +599,7 @@
     </div>
     <div class="bg-body-text bg-bg-blue flex justify-center items-center">
       <div
-        class=" bg-no-repeat bg-center w-full max-w-6xl py-[48px] 1440:py-[71px]"
+        class="bg-no-repeat bg-center w-full max-w-6xl py-[48px] 1440:py-[71px]"
       >
         <div
           class="max-w-[1128px] mx-auto px-4 768:px-[30px] flex justify-center"
@@ -692,72 +692,51 @@
 </template>
 
 <script>
+import createClient from "contentful";
 import HeaderDefault from "./components/HeaderDefault.vue";
 import FooterDefault from "./components/FooterDefault.vue";
+const contentful = require("contentful");
 
 export default {
+  name: "HomeView",
   components: {
     HeaderDefault: HeaderDefault,
     FooterDefault: FooterDefault,
   },
   data() {
-    // ...
+    return {
+      dataModel: [],
+      test: "",
+    };
   },
-  created() {
-    // ...
+  mounted() {
+    this.getDataModel();
   },
   methods: {
-    getShows: async () => {
-      const query = `{
-           showCollection {  
-           // query goes here     
-           }
-         }`;
-
-      const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.VUE_APP_CONTENTFUL_SPACE_ID}`;
-      const fetchOptions = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query,
-        }),
-      };
-
-      try {
-        const response = await fetch(fetchUrl, fetchOptions).then((response) =>
-          response.json()
-        );
-        return response.data.showCollection.items;
-      } catch (error) {
-        throw new Error("Could not receive the data from Contentful!");
+    convertHtml(value) {
+      var html = "";
+      for (var i = 0; i < 2; i++) {
+        html += value[i].content[0].value.join("");
       }
+      return html;
+    },
+    async getDataModel() {
+      const client = contentful.createClient({
+        space: process.env.VUE_APP_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN,
+      });
+      const res = await client.getEntries({ content_type: "homepage" });
+      console.log(res.items);
+      this.dataModel = res.items;
+      this.test = this.convertHtml(
+        this.dataModel[0]?.fields?.bannerTitle.content
+      );
     },
   },
 };
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
