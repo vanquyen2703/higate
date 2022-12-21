@@ -1,4 +1,3 @@
-
 <template>
   <HeaderDefault />
   <main id="Homepage-one">
@@ -692,7 +691,7 @@
 </template>
 
 <script>
-import createClient from "contentful";
+import { createClient } from "contentful";
 import HeaderDefault from "./components/HeaderDefault.vue";
 import FooterDefault from "./components/FooterDefault.vue";
 const contentful = require("contentful");
@@ -731,12 +730,10 @@ export default {
       this.test = this.convertHtml(
         this.dataModel[0]?.fields?.bannerTitle.content
       );
+      console(getDataModel);
     },
   },
 };
 </script>
 
-
-<style>
-
-</style>
+<style></style>

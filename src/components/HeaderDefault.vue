@@ -40,7 +40,7 @@
                 "
               ></span
               ><img
-                src="/_next/image?url=%2Fstatic%2Fimages%2Flogo%2FLogo-light.png&amp;w=3840&amp;q=75"
+                src="/public/images/logo-higate.svg"
                 decoding="async"
                 data-nimg="responsive"
                 style="

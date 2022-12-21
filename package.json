@@ -8,8 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.0.2",
+    "@contentful/rich-text-react-renderer": "^15.16.2",
     "autoprefixer": "^10",
+    "contentful": "^9.2.14",
     "core-js": "^3.8.3",
+    "module": "^1.2.5",
     "postcss": "^8",
     "tailwindcss": "^3",
     "vue": "^3.2.13",
