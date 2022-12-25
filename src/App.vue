@@ -118,8 +118,10 @@
         <div
           class="max-w-[552px] pt-4 text-body-text2 leading-body-text2 1440:pt-4 1440:pb-[96px] 768:text-body-text1 text-center text-body-text font-OpenSans font-normal 768:leading-[22.88px]"
         >
-          The best place to identify, engage, and recruit global talents to help
-          your business expand without boundaries.
+          <!-- {{ dataModal[0] }} -->
+          <!-- {{
+            dataModal[0]?.feilds.BannerDescription.content[0].content[0].value
+          }} -->
         </div>
       </div>
     </div>
@@ -691,7 +693,7 @@
 </template>
 
 <script>
-import { createClient } from "contentful";
+// import createClient from "contentful";
 import HeaderDefault from "./components/HeaderDefault.vue";
 import FooterDefault from "./components/FooterDefault.vue";
 const contentful = require("contentful");
@@ -724,13 +726,14 @@ export default {
         space: process.env.VUE_APP_CONTENTFUL_SPACE_ID,
         accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN,
       });
+
       const res = await client.getEntries({ content_type: "homepage" });
-      console.log(res.items);
+
+      //console.log(res.items);
       this.dataModel = res.items;
       this.test = this.convertHtml(
         this.dataModel[0]?.fields?.bannerTitle.content
       );
-      console(getDataModel);
     },
   },
 };
